@@ -10,7 +10,6 @@ const FresherQATest = () => {
           src='https://docs.google.com/forms/d/e/1FAIpQLSe_6u3m6FpCbHOnOhmcqQvF9j4BZQmZ_xQJCvXemdgUoiGfzQ/viewform?embedded=true'
           width='700'
           height='520'
-          title='FresherQATests'
         >
           Loading…
         </iframe>

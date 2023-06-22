@@ -10,7 +10,6 @@ const ShopifyTest = () => {
           src='https://docs.google.com/forms/d/e/1FAIpQLSfmG8lozHE7zsZCiuDPZHcT21j7FxceG0MVIHTMhkWcVADD6w/viewform?embedded=true'
           width='700'
           height='520'
-          title='ShopifyTest'
         >
           Loading…
         </iframe>
