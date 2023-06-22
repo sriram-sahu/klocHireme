@@ -6,22 +6,52 @@ import "./index.css";
 import Navbar from "./Navbar";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-const tests = [
-  "Fresher Test",
-  "Freshers QA Test",
-  "Full Stack Developer Test",
-  "Freshers Python Test",
-  "Freshers Java Test",
-  "Frontend Freshers Test",
-  "Shopify Developer Test",
-  "MERN Developer Junior Test",
-  "MERN Developer Intermediate Test",
-];
+
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+
 const SendAssessments = () => {
   const [activeTest, setActiveTest] = useState("");
   const [studentCount, setStudentCount] = useState(1);
   const [proceeding, setProceeding] = useState(false);
   const [candidateFields, setCandidateFields] = useState([]);
+
+  const [open, setOpen] = useState(false);
+
+  const tests = [
+    "Freshers Junior Test",
+    "Fresher Test",
+    "Freshers QA Test",
+    "Full Stack Developer Test",
+    "Freshers Python Test",
+    "Freshers Java Test",
+    "Frontend Freshers Test",
+    "Shopify Developer Test",
+    "MERN Developer Junior Test",
+    "MERN Developer Intermediate Test",
+  ];
+
+  const isEmptyField = candidateFields.some((each) =>
+    Object.values(each).some((value) => value === "")
+  );
+
+  const handleClickOpen = () => {
+    if (!isEmptyField) {
+      setOpen(true);
+    }
+    if (isEmptyField) {
+      alert("Please fill in all the candidate details");
+      return;
+    }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const navigate = useNavigate();
 
@@ -40,6 +70,7 @@ const SendAssessments = () => {
       return updatedFields;
     });
   };
+
   const onClickProceed = () => {
     if (activeTest === "") {
       alert("Select Test");
@@ -48,7 +79,6 @@ const SendAssessments = () => {
       setCandidateFields(Array.from({ length: studentCount }, () => ({})));
     }
   };
-
   const sendingMailThroughEmailJs = (student) => {
     console.log(student);
     emailjs
@@ -71,7 +101,6 @@ const SendAssessments = () => {
         console.error("Error sending email:", error);
       });
   };
-  
   const updateStudentThroughSheetDb = (student) => {
     console.log(activeTest);
     const random = uniqueRandom(10000, 100000);
@@ -102,61 +131,55 @@ const SendAssessments = () => {
   };
 
   const onClickSendAssessment = () => {
-    console.log(candidateFields);
+    console.log("triggered");
 
     // Check if any of the candidate input fields are empty
-    const isEmptyField = candidateFields.some((each) =>
-      Object.values(each).some((value) => value === "")
-    );
-
-    if (isEmptyField) {
-      alert("Please fill in all the candidate details");
-      return;
-    }
 
     candidateFields.forEach((each) => {
       updateStudentThroughSheetDb(each);
+      sendingMailThroughEmailJs(each);
     });
+    handleClose();
+    setProceeding(false);
   };
 
   return (
-    <div>
+    <div className='send-assessment-container'>
       <Navbar />
       <div>
-        <div className='radio-button-container'>
-          <div className='d-flex assessment-container'>
-            <div>
-              {tests.map((each, index) => (
-                <div className='radio-input-field-container' key={each}>
-                  <label className='each-check-box'>
-                    <input
-                      onChange={(e) => setActiveTest(e.target.value)}
-                      value={each}
-                      name='test'
-                      type='radio'
-                      required
-                    />
-                    <span className='checkmark'> {each}</span>
-                  </label>
+        <div className='assessment-container'>
+          <div>
+            {tests.map((each, index) => (
+              <div key={index} className='input-container'>
+                <div>
                   <input
-                    disabled={activeTest !== each}
-                    className='test-count-input input-fields'
-                    type='text'
-                    onChange={(e) => setStudentCount(e.target.value)}
-                    value={activeTest === each ? studentCount : ""}
+                    type='radio'
+                    name='test'
+                    id={index}
+                    onChange={(e) => setActiveTest(e.target.value)}
+                    value={each}
                   />
-                  <br />
+                  <label htmlFor={index}>{each}</label>
                 </div>
-              ))}
-            </div>
+                <input
+                  disabled={activeTest !== each}
+                  type='number'
+                  className='user-input'
+                  id={index}
+                  onChange={(e) => setStudentCount(e.target.value)}
+                  value={activeTest === each ? studentCount : ""}
+                />
+              </div>
+            ))}
           </div>
-          <button
+
+          <Button
+            variant='contained'
+            className='assessment-button m-3'
             onClick={onClickProceed}
-            className='btn btn-primary Proceed-button'
-            type='button'
           >
             Proceed
-          </button>
+          </Button>
         </div>
         <div className='each-input-student-details-div'>
           {proceeding &&
@@ -170,12 +193,30 @@ const SendAssessments = () => {
 
           {proceeding && (
             <div className='text-center'>
-              <button
-                onClick={onClickSendAssessment}
-                className='btn btn-primary m-2'
-              >
+              <Button variant='contained' onClick={handleClickOpen}>
                 Send Assessment
-              </button>
+              </Button>
+              <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby='alert-dialog-title'
+                aria-describedby='alert-dialog-description'
+              >
+                <DialogTitle id='alert-dialog-title'>
+                  {"Are You Sure You Want To Send?"}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText id='alert-dialog-description'>
+                    Let's Check onces before sending the assessment !
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose}>Disagree</Button>
+                  <Button onClick={onClickSendAssessment} autoFocus>
+                    Agree
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </div>
           )}
         </div>
@@ -183,4 +224,5 @@ const SendAssessments = () => {
     </div>
   );
 };
+
 export default SendAssessments;

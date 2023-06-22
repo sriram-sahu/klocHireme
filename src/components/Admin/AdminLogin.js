@@ -4,7 +4,6 @@ import Cookies from "js-cookie";
 import { v4 as uuidv4 } from "uuid";
 import { gapi } from "gapi-script";
 import { useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
 import "./index.css";
 
 const AdminLogin = () => {

@@ -17,7 +17,6 @@ import FrontEndFresherTest from "./components/Student/StudentTests/FrontEndFresh
 import MernDeveloperJunior from "./components/Student/StudentTests/MernDeveloperJunior";
 import MernDeveloperIntermediate from "./components/Student/StudentTests/MernDeveloperIntermediate";
 import FresherQATest from "./components/Student/StudentTests/FresherQATest";
-import Assessment from "./components/Admin/Assessment";
 import NotFound from "./components/Admin/NotFound";
 import FreshersJuniorTest from "./components/Student/StudentTests/FreshersJuniorTest";
 
@@ -33,35 +32,35 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           {/* admin components */}
-          <Route path="/adminLogin" element={<AdminLogin />} />
-          <Route path="/testReports" element={<TestReports />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/sendAssessments" element={<Assessment />} />
+          <Route path='/adminLogin' element={<AdminLogin />} />
+          <Route path='/testReports' element={<TestReports />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/sendAssessments' element={<SendAssessments />} />
 
           {/* student components */}
-          <Route path="/studentLogin" element={<StudentLogin />} />
+          <Route path='/studentLogin' element={<StudentLogin />} />
 
           {/* test navigation */}
-          <Route path="/fresher-junior-test" element={<FreshersJuniorTest />} />
-          <Route path="/fresher-test" element={<FresherTests />} />
-          <Route path="/fresher-qa-test" element={<FresherQATest />} />
-          <Route path="/fullstack-developer-test" element={<FullStackTest />} />
-          <Route path="/fresher-python-test" element={<PythonTest />} />
-          <Route path="/fresher-java-test" element={<JavaTest />} />
+          <Route path='/fresher-junior-test' element={<FreshersJuniorTest />} />
+          <Route path='/fresher-test' element={<FresherTests />} />
+          <Route path='/fresher-qa-test' element={<FresherQATest />} />
+          <Route path='/fullstack-developer-test' element={<FullStackTest />} />
+          <Route path='/fresher-python-test' element={<PythonTest />} />
+          <Route path='/fresher-java-test' element={<JavaTest />} />
           <Route
-            path="/frontend-fresher-test"
+            path='/frontend-fresher-test'
             element={<FrontEndFresherTest />}
           />
-          <Route path="/shopify-developer-test" element={<ShopifyTest />} />
+          <Route path='/shopify-developer-test' element={<ShopifyTest />} />
           <Route
-            path="/mern-developer-junior-test"
+            path='/mern-developer-junior-test'
             element={<MernDeveloperJunior />}
           />
           <Route
-            path="/mern-developer-intermediate-test"
+            path='/mern-developer-intermediate-test'
             element={<MernDeveloperIntermediate />}
           />
-          <Route path="/notFound" element={<NotFound />} />
+          <Route path='/notFound' element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </TestContext.Provider>
