@@ -10,6 +10,7 @@ const FrontEndFresherTest = () => {
           src='https://docs.google.com/forms/d/e/1FAIpQLSfrDGqx_UKpYQRWXux6DY46fQ7ORmMCOrumWBg0edT-zXaDmw/viewform?embedded=true'
           width='700'
           height='520'
+          title='FrontEndFresherTest'
         >
           Loading…
         </iframe>

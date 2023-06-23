@@ -1,23 +1,92 @@
-th, td {
-    padding: 8px;
-    text-align: left;
-    border: 3px;
-    border: 1px solid black
-  }
-  table td {
-    border-top: thin solid; 
-    border-bottom: thin solid;
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border: 3px;
+  border: 1px solid black;
+}
+table td {
+  border-top: thin solid;
+  border-bottom: thin solid;
 }
 
 table td:first-child {
-     border-left: thin solid;
+  border-left: thin solid;
 }
 
 table td:last-child {
-     border-right: thin solid;
+  border-right: thin solid;
 }
 table td {
-    border-left: 1px solid #000;
-    border-right: 1px solid #000;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
 }
 
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap; /* Prevent line breaks */
+}
+
+table th,
+table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Media query for small devices */
+@media (max-width: 600px) {
+  /* Adjust the table layout for smaller screens */
+  table,
+  table thead,
+  table tbody,
+  table th,
+  table td,
+  table tr {
+    display: block;
+  }
+
+  table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  table tbody tr {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+
+  table th {
+    text-align: left;
+  }
+
+  table td {
+    /* Set appropriate width or percentage for your table data cells */
+    width: 200px;
+    float: left;
+    clear: left;
+    border: none;
+  }
+}

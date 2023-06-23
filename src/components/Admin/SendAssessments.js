@@ -133,7 +133,7 @@ const Assessment = () => {
     setProceeding(false);
   };
   return (
-    <div className="send-assessment-container">
+    <>
       <div style={{paddingLeft:'30px',paddingTop:'10px',backgroundColor:'#0047AB',color:'white',height:'65px',display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
               <div style={{display:'flex',alignItems:'center'}}>
               <p onClick={()=>navigate('/')}style={{fontSize:'20px',marginRight:'30px',fontWeight:'bold'}}>ASSESSMENTS MADE SIMPLE </p>
@@ -147,26 +147,25 @@ const Assessment = () => {
                 navigate('/adminLogin')}>Admin</p>
               </div>
             </div>
-      <div>
         <div className="assessment-container">
           <div>
             {tests.map((each, index) => (
               <div key={index} className="input-container">
-                <div style={{marginTop:'5px'}}>
+                <div className="assessmentContainerCheckboxContainer">
                   <input
                     type="radio"
                     name="test"
                     id={index}
                     onChange={(e) => setActiveTest(e.target.value)}
                     value={each}
-                    style={{marginRight:'10px',transform: 'scale(1.2)'}}
+                    className='assessmentContainerCheckbox'
                   />
-                  <label htmlFor={index} style={{fontSize:'18px'}}>{each}</label>
+                  <label htmlFor={index} className='assessmentContainerLabel'>{each}</label>
                 </div>
                 <input
                   disabled={activeTest !== each}
                   type="number"
-                  className="user-input"
+                  className="assessmentContainerInput"
                   id={index}
                   onChange={(e) => setStudentCount(e.target.value)}
                   value={activeTest === each ? studentCount : ""}
@@ -220,8 +219,7 @@ const Assessment = () => {
             </div>
           )}
         </div>
-      </div>
-    </div>
+    </>
   );
 };
 export default Assessment;

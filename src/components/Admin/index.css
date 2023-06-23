@@ -55,15 +55,21 @@
 }
 
 .assessment-container {
-  background-color: #c0ddd1;
-  border-radius: 20px;
-  margin: 40px;
+  background-color: rgb(231, 230, 230);
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width:100vw;
 }
-
+.assessmentContainerCheckbox{
+  margin-right:10px;
+    transform: scale(1.2);
+}
+.assessmentContainerLabel{
+  font-size:18px;
+    position:fixed;
+}
 .input-container {
   display: flex;
   justify-content: space-between;
@@ -74,17 +80,18 @@
   align-self: center;
   margin: 20px;
 }
-.send-assessment-container {
-  background-color: #629681;
-  min-height: 100vh;
+
+.assessmentContainerCheckboxContainer{
+  margin-top:5px;
 }
 
-.user-input {
+.assessmentContainerInput {
   background: #fcf5fd;
   border-radius: 2px;
   border: none;
   margin: 5px;
   padding-bottom: 8px;
+  width:100px;
 }
 
 .not-found-container {
@@ -128,7 +135,12 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
-.send-assessment-container {
-  background-color: #EDFEFF;
-  min-height: 100vh;
+
+
+@media (max-width:768px){
+  .input-container{
+    flex-direction:column;
+  }
+ 
+  
 }
